@@ -1,6 +1,6 @@
 ﻿namespace EthernetService
 {
-    partial class Service1
+    partial class EthernetService
     {
         /// <summary> 
         /// Required designer variable.

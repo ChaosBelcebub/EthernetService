@@ -17,7 +17,7 @@ namespace EthernetService
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new EthernetService()
             };
             ServiceBase.Run(ServicesToRun);
         }
