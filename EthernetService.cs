@@ -26,7 +26,7 @@ namespace EthernetService
             this.timer.Interval = 30000;
             this.timer.Elapsed += new System.Timers.ElapsedEventHandler(this.timerTest);
             timer.Enabled = true;
-            Library.writeErrorLog("Test window service started")
+            Library.writeErrorLog("Test window service started");
         }
 
         protected override void OnStop()
