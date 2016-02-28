@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,11 @@ namespace EthernetService
 
         private void timerTest(object sender, ElapsedEventArgs e)
         {
-            Library.writeErrorLog("Test Timer");
+            NetworkInterface[] networkCards = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface ni in networkCards)
+            {
+                Library.writeErrorLog(ni.Name + ": " + ni.OperationalStatus);
+            }
         }
     }
 }
