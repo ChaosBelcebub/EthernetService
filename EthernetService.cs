@@ -38,10 +38,19 @@ namespace EthernetService
 
         private void timerTest(object sender, ElapsedEventArgs e)
         {
-            NetworkInterface[] networkCards = NetworkInterface.GetAllNetworkInterfaces();
-            foreach (NetworkInterface ni in networkCards)
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
             {
-                Library.writeErrorLog(ni.Name + ": " + ni.OperationalStatus);
+                if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                {
+                    Library.writeErrorLog(ni.Name + ":");
+                    foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        {
+                            Library.writeErrorLog("  " + ip.Address.ToString());
+                        }
+                    }
+                }
             }
         }
     }
