@@ -9,6 +9,13 @@ namespace EthernetService
 {
     public static class Library
     {
+        public static void deleteLog()
+        {
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.txt"))
+            {
+                File.Delete(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.txt");
+            }
+        }
         /// <summary>
         /// Writes an error message to my logfile
         /// </summary>
@@ -19,7 +26,7 @@ namespace EthernetService
             try
             {
                 sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.txt", true);
-                sw.WriteLine(DateTime.Now.ToString() + ": " + ex.Source.ToString().Trim() + ": " + ex.Message.ToString().Trim());
+                sw.WriteLine(DateTime.Now.ToString() + ": Error occured in '" + ex.Source.ToString().Trim() + "': " + ex.Message.ToString().Trim());
                 sw.Flush();
                 sw.Close();
             }
