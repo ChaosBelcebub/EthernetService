@@ -99,6 +99,10 @@
   <PropertyGroup>
     <PostBuildEvent>$(TargetPath) --install</PostBuildEvent>
   </PropertyGroup>
+  <Target Name="BeforeCleanOnly" AfterTargets="BeforeClean">
+    <Exec Command="C:\Users\Michael\Documents\Projekte\EthernetService\bin\Debug\EthernetService.exe --uninstall" />
+    <Message Text="Uninstalled service" Importance="High" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
