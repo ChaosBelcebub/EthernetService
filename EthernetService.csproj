@@ -72,7 +72,9 @@
     <Compile Include="EthernetService.Designer.cs">
       <DependentUpon>EthernetService.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventWatcherAsync.cs" />
     <Compile Include="Library.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -91,6 +93,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>IF EXIST $(TargetPath) $(TargetPath) --uninstall</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>$(TargetPath) --install</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
